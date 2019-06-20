@@ -45,9 +45,7 @@ public:
     output_sigma_factor ... spatial bandwidth (proportional to target)  (0.1)
     cell_size           ... hog cell size                               (4)
     */
-    KCF_Tracker(double padding, double kernel_sigma, double lambda, double interp_factor, double output_sigma_factor, int cell_size) :
-        p_padding(padding), p_output_sigma_factor(output_sigma_factor), p_kernel_sigma(kernel_sigma),
-        p_lambda(lambda), p_interp_factor(interp_factor), p_cell_size(cell_size) {}
+ KCF_Tracker(double padding, double kernel_sigma, double lambda, double interp_factor,double output_sigma_factor, int cell_size, int num_scales) : p_padding(padding), p_output_sigma_factor(output_sigma_factor), p_kernel_sigma(kernel_sigma),p_lambda(lambda), p_interp_factor(interp_factor), p_cell_size(cell_size), p_num_scales(num_scales) {}
     KCF_Tracker() {}
 
     // Init/re-init methods
@@ -72,7 +70,7 @@ private:
     int p_cell_size = 4;            //4 for hog (= bin_size)
     int p_windows_size[2];
     cv::Mat p_cos_window;
-    int p_num_scales {7};
+    int p_num_scales {14};
     double p_scale_step = 1.02;
     double p_current_scale = 1.;
     double p_min_max_scale[2];
